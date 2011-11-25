@@ -1,6 +1,5 @@
 import datetime
 from haystack import indexes
-from haystack import site
 from mzalendo.core import models
 
 
@@ -16,21 +15,31 @@ from mzalendo.core import models
 #   http://docs.haystacksearch.org/dev/best_practices.html#avoid-hitting-the-database
 
 
-class PersonIndex(indexes.RealTimeSearchIndex):
+class PersonIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     name_auto = indexes.EdgeNgramField(model_attr='name')
 
-class PlaceIndex(indexes.RealTimeSearchIndex):
+    def get_model(self):
+        return models.Person
+
+
+class PlaceIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
 
-class OrganisationIndex(indexes.RealTimeSearchIndex):
+    def get_model(self):
+        return models.Place
+
+
+class OrganisationIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
 
-class PositionTitleIndex(indexes.RealTimeSearchIndex):
+    def get_model(self):
+        return models.Organisation
+
+
+class PositionTitleIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
 
+    def get_model(self):
+        return models.PositionTitle
 
-site.register( models.Person,        PersonIndex        )
-site.register( models.Place,         PlaceIndex         )
-site.register( models.Organisation,  OrganisationIndex  )
-site.register( models.PositionTitle, PositionTitleIndex )

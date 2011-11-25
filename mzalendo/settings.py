@@ -36,7 +36,13 @@ if IN_TEST_MODE:
     if os.path.exists( root_dir ):
         shutil.rmtree( root_dir )
     print "Running in test mode! (testing root_dir is '%s')" % root_dir
-    
+
+
+def join_and_mkdir(*args):
+    abs_path = os.path.join( *args )
+    if not os.path.exists(abs_path ): os.makedirs(abs_path)
+    return abs_path
+
 
 # load the mySociety config
 config_file = os.path.join( base_dir, 'conf', 'general.yml' )
@@ -345,9 +351,10 @@ PAGINATION_INVALID_PAGE_RAISES_404 = True
 HAYSTACK_CONNECTIONS = {
     'default': {
         'ENGINE': 'xapian_backend.XapianEngine',
-        'PATH': os.path.join( root_dir, "mzalendo_xapian" ),
+        'PATH': join_and_mkdir( root_dir, 'mzalendo_xapian' ),
     },
 }
+
 
 
 # Admin autocomplete

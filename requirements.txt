@@ -40,7 +40,7 @@ django-ajax-selects>=1.2.1
 # TODO: switch to the pypi package when released
 #
 -e git://github.com/toastdriven/django-haystack.git@b8a23d4827ee444e441d74eb11435493ef66030f#egg=django-haystack
--e git://github.com/notanumber/xapian-haystack.git@b089df8af4f20bd5928670f992353dd3808701ea#egg=xapian-haystack
+-e git://github.com/evdb/xapian-haystack.git#egg=xapian-haystack
 
 WebTest>=1.3.2
 django-webtest
