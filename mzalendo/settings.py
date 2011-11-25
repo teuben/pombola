@@ -341,9 +341,13 @@ PAGINATION_INVALID_PAGE_RAISES_404 = True
 
 
 # haystack config - interface to Xapian search engine
-HAYSTACK_SITECONF      = 'mzalendo.search_sites'
-HAYSTACK_SEARCH_ENGINE = 'xapian'
-HAYSTACK_XAPIAN_PATH   = os.path.join( root_dir, "mzalendo_xapian" )
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'xapian_backend.XapianEngine',
+        'PATH': os.path.join( root_dir, "mzalendo_xapian" ),
+    },
+}
+
 
 # Admin autocomplete
 AJAX_LOOKUP_CHANNELS = {
