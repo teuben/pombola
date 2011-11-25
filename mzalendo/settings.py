@@ -226,6 +226,7 @@ INSTALLED_APPS = (
     'projects',
     'place_data',
     'user_profile',
+    'search',
     'core',
 )
 
