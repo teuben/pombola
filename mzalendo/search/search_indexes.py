@@ -1,6 +1,8 @@
 import datetime
 from haystack import indexes
-from mzalendo.core import models
+
+from core    import models as core_models
+from hansard import models as hansard_models
 
 
 # TODO - currently I'm using the realtime search index - which is possibly a bad
@@ -15,31 +17,46 @@ from mzalendo.core import models
 #   http://docs.haystacksearch.org/dev/best_practices.html#avoid-hitting-the-database
 
 
+
+
 class PersonIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     name_auto = indexes.EdgeNgramField(model_attr='name')
 
     def get_model(self):
-        return models.Person
+        return core_models.Person
 
 
 class PlaceIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
 
     def get_model(self):
-        return models.Place
+        return core_models.Place
 
 
 class OrganisationIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
 
     def get_model(self):
-        return models.Organisation
+        return core_models.Organisation
 
 
 class PositionTitleIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
 
     def get_model(self):
-        return models.PositionTitle
+        return core_models.PositionTitle
+
+
+
+class HansardEntryIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
+    text = indexes.CharField(document=True, use_template=True)
+
+    def get_model(self):
+        return hansard_models.Entry
+
+
+
+
+
 
