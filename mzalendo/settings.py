@@ -353,7 +353,15 @@ HAYSTACK_CONNECTIONS = {
         'ENGINE': 'xapian_backend.XapianEngine',
         'PATH': join_and_mkdir( root_dir, 'mzalendo_xapian' ),
     },
+    'hansard': {
+        'ENGINE': 'xapian_backend.XapianEngine',
+        'PATH': join_and_mkdir( root_dir, 'mzalendo_xapian_hansard' ),
+    },
 }
+HAYSTACK_ROUTERS = [
+    'search.routers.HansardRouter',
+    'haystack.routers.DefaultRouter',
+]
 
 
 

@@ -50,8 +50,8 @@ class AutocompleteTest(unittest.TestCase):
             'jones': [ 'Fred Jones' ],
 
             # partial names
-            'jo': [ 'Fred Jones', 'Joe Bloggs', 'Joe Smith', 'Josepth Smyth' ],
-            'sm': [ 'Bobby Smith', 'Joe Smith', 'Josepth Smyth', ],            
+            'jo': [ 'Joe Smith', 'Joe Bloggs', 'Fred Jones', 'Josepth Smyth' ],
+            'sm': [ 'Joe Smith', 'Bobby Smith', 'Josepth Smyth', ],            
 
             # no matches
             'foo': [],

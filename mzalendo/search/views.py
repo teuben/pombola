@@ -49,6 +49,7 @@ def autocomplete(request):
         # sqs = SearchQuerySet().autocomplete(name_auto=term)
 
         # Split the search term up into little bits
+        print term
         terms = re.split(r'\s+', term)
 
         # Build up a query based on the bits

@@ -48,15 +48,10 @@ class PositionTitleIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
         return core_models.PositionTitle
 
 
-
 class HansardEntryIndex(indexes.RealTimeSearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
 
     def get_model(self):
         return hansard_models.Entry
-
-
-
-
 
 
