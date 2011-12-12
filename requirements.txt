@@ -25,9 +25,14 @@ django-bcrypt
 -e hg+https://bitbucket.org/ubernostrum/django-registration@fad7080fe769#egg=django-registration
 django-registration-defaults
 
+
+### Popit
+-e git://github.com/mysociety/popit.git#egg=popit
+
 ### Mzalendo dependencies
 sorl-thumbnail
--e git://github.com/evdb/django-date-extensions.git#egg=django-date-extensions
+-e git://github.com/dracos/django-date-extensions.git#egg=django-date-extensions
+
 django-ajax-selects>=1.2.1
 
 Markdown>=2.0.3

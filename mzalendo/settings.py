@@ -246,6 +246,7 @@ INSTALLED_APPS = (
     'images',
     'sorl.thumbnail',
     
+    'popit',
     'haystack',
 
     'helpers',
