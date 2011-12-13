@@ -5,17 +5,27 @@ from south.v2 import DataMigration
 from django.db import models
 
 class Migration(DataMigration):
-    """Ensure that popit tables are created"""
+    """Ensure that popit tables are created, put some initial bits in place"""
 
-    depends_on = (
-        ("popit", "0004_add_positions"),
-    )
+    code_types = [
+        {
+            "type": "original_core_id",
+            "desc": "The id that the entry had in the core table - only used during conversion",
+        },
+    ]
+
 
     def forwards(self, orm):
-        pass        
-        
+        """Put some scaffolding in place"""
+        for conf in self.code_types:
+            orm['popit.CodeType'].objects.create( **conf )
+
+
     def backwards(self, orm):
-        pass
+        """Delete scaffolding setup for the conversion"""
+        for conf in self.code_types:
+            orm['popit.CodeType'].objects.get(type=conf['type']).delete()
+
 
     models = {
         'auth.group': {
