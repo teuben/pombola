@@ -26,7 +26,8 @@ django-bcrypt
 django-registration-defaults
 
 
-### Popit
+### Popit and mapit components
+-e git://github.com/mysociety/mapit.git@mapit-as-app#egg=django-mapit
 -e git://github.com/mysociety/popit.git#egg=popit
 
 ### Mzalendo dependencies
@@ -58,5 +59,3 @@ BeautifulSoup>=3.2.0
 
 python-memcached
 
-# django-mapit
--e git://github.com/mysociety/mapit.git@mapit-as-app#egg=django-mapit

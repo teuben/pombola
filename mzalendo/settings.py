@@ -242,11 +242,11 @@ INSTALLED_APPS = (
 
     'comments2',
     'mapit',
+    'popit',
 
     'images',
     'sorl.thumbnail',
     
-    'popit',
     'haystack',
 
     'helpers',
