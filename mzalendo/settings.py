@@ -6,6 +6,11 @@ import sys
 import logging
 import yaml
 
+# Uncomment to log all SQL statements
+# l = logging.getLogger('django.db.backends')
+# l.setLevel(logging.DEBUG)
+# l.addHandler(logging.StreamHandler())
+
 # We need to work out if we are in test mode so that the various directories can
 # be changed so that the tests do not clobber the dev environment (eg media
 # files, xapian search index, cached hansard downloads).
