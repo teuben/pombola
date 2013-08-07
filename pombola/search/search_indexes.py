@@ -1,8 +1,6 @@
 from django.conf import settings
 
 from haystack import indexes
-from haystack import site
-from haystack.exceptions import AlreadyRegistered
 
 from pombola.core import models as core_models
 
@@ -25,38 +23,39 @@ from pombola.core import models as core_models
 # index abstraction.
 
 
-class BaseIndex(indexes.RealTimeSearchIndex):
+class BaseIndex(indexes.SearchIndex):
     text = indexes.CharField(document=True, use_template=True)
 
 
-class PersonIndex(BaseIndex):
+class PersonIndex(BaseIndex, indexes.Indexable):
     name_auto = indexes.EdgeNgramField(model_attr='name')
 
-class PlaceIndex(BaseIndex):
+    def get_model(self):
+        return core_models.Person
+
+class PlaceIndex(BaseIndex, indexes.Indexable):
     name_auto = indexes.EdgeNgramField(model_attr='name')
 
-class OrganisationIndex(BaseIndex):
+    def get_model(self):
+        return core_models.Place
+
+class OrganisationIndex(BaseIndex, indexes.Indexable):
     name_auto = indexes.EdgeNgramField(model_attr='name')
 
-class PositionTitleIndex(BaseIndex):
+    def get_model(self):
+        return core_models.Organisation
+
+class PositionTitleIndex(BaseIndex, indexes.Indexable):
     name_auto = indexes.EdgeNgramField(model_attr='name')
 
-
-try:
-    site.register( core_models.Person,        PersonIndex        )
-    site.register( core_models.Place,         PlaceIndex         )
-    site.register( core_models.Organisation,  OrganisationIndex  )
-    site.register( core_models.PositionTitle, PositionTitleIndex )
-except AlreadyRegistered:
-    # Ignore this error
-    pass
-
+    def get_model(self):
+        return core_models.PositionTitle
 
 
 if settings.ENABLED_FEATURES['hansard']:
     from pombola.hansard import models as hansard_models
 
-    class HansardEntryIndex(BaseIndex):
+    class HansardEntryIndex(BaseIndex, indexes.Indexable):
+        def get_model(self):
+            return hansard_models.Entry
         pass
-
-    site.register( hansard_models.Entry, HansardEntryIndex )

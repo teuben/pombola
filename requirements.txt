@@ -27,12 +27,6 @@ Markdown
 ### Use a fork of django-markitup so that we get correct truthiness
 -e hg+https://bitbucket.org/evdb/django-markitup/@fe49ef12c614#egg=django-markitup
 
-xapian-haystack==1.1.5beta
-django-haystack==1.2.7
-# note that this might not be a complete install. You my also need to install the bindings.
-# see http://www.epicserve.com/blog/2010/oct/16/installing-xapian-osx-python-bindings/
-# or if using homebrew do `brew install xapian --python`
-
 # Testing helpers 
 httplib2
 WebTest>=1.3.2
@@ -48,6 +42,14 @@ python-memcached
 
 # django-mapit
 -e git://github.com/mysociety/mapit.git@master#egg=django-mapit
+
+# SayIt
+# Specifying popit-django master here too, because the -e line in sayit's
+# requirements.txt is ignored installing this way, so otherwise it wouldn't be.
+# If/when sayit specifies the pypi version of popit-django, the second line
+# here would not be necessary.
+-e git://github.com/mysociety/sayit.git@master#egg=django-sayit
+-e git://github.com/mysociety/popit-django@master#egg=popit-django
 
 python-dateutil
 
